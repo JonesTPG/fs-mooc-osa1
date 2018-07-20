@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const Otsikko = (props) => {
   return (
     <div>
-      <h1>{props.kurssi}</h1>
+      <h1> {props.kurssi}</h1>
     </div>
   )
 
