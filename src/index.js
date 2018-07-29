@@ -119,7 +119,7 @@ class App extends React.Component {
                     text="huono"
                 />
 
-                
+                <h3>Statistiikka</h3>
 
                 <Statistics
                     hyva={this.state.hyva}
@@ -127,6 +127,7 @@ class App extends React.Component {
                     huono={this.state.huono}
                     keskiarvo={this.state.keskiarvo}
                     prosentti={this.state.prosentti}
+                    lkm={this.state.lkm}
                     
                 />
 
@@ -151,31 +152,40 @@ const Statistic = ({statistiikka, nimi}) => {
 }
 
 const Statistics = (props) => {
-    return (
-        <div>
-            <h3>Statistiikka</h3>
-            <Statistic
-                statistiikka={props.hyva}
-                nimi="hyvä"
-            />
-            <Statistic
-                statistiikka={props.neutraali}
-                nimi="neutraali"
-            />
-            <Statistic
-                statistiikka={props.huono}
-                nimi="huono"
-            />
-            <Statistic
-                statistiikka={props.keskiarvo}
-                nimi="keskiarvo"
-            />
-            <Statistic
-                statistiikka={props.prosentti}
-                nimi="prosentti"
-            />
-        </div>
-    )
+    
+    if (props.lkm === 0) {
+        return (
+            <p>yhtään palautetta ei ole annettu!</p>
+        )
+    }
+    
+    else {
+        return (
+            <div>
+            
+                <Statistic
+                    statistiikka={props.hyva}
+                    nimi="hyvä"
+                />
+                <Statistic
+                    statistiikka={props.neutraali}
+                    nimi="neutraali"
+                />
+                <Statistic
+                    statistiikka={props.huono}
+                    nimi="huono"
+                />
+                <Statistic
+                    statistiikka={props.keskiarvo.toFixed(1)}
+                    nimi="keskiarvo"
+                />
+                <Statistic
+                    statistiikka={props.prosentti.toFixed(1)}
+                    nimi="prosentti"
+                />
+            </div>
+        )
+    }
 
 }
 
