@@ -9,10 +9,21 @@ class App extends React.Component {
     }
   }
 
+
+  satunnainen() {
+        
+            let uusiLuku = Math.floor(Math.random() * 6)
+            return () => this.setState({selected: uusiLuku})
+        
+  }
+
   render() {
     return (
-      <div>
-        {this.props.anecdotes[this.state.selected]}
+      <div align="center">
+        {this.props.anecdotes[this.state.selected]} <br/>
+        <button onClick={this.satunnainen()}>
+            Next anectode
+        </button>
       </div>
     )
   }
@@ -26,6 +37,7 @@ const anecdotes = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
