@@ -119,15 +119,15 @@ class App extends React.Component {
                     text="huono"
                 />
 
-                <h3>Statistiikka</h3>
+                
 
-                <Display
+                <Statistics
                     hyva={this.state.hyva}
                     neutraali={this.state.neutraali}
                     huono={this.state.huono}
-                    keskiarvo={this.state.keskiarvo.toFixed(1)}
-                    lkm={this.state.lkm}
-                    prosentti={this.state.prosentti.toFixed(1)}
+                    keskiarvo={this.state.keskiarvo}
+                    prosentti={this.state.prosentti}
+                    
                 />
 
             </div>
@@ -135,24 +135,49 @@ class App extends React.Component {
     }
 }
 
-const Display = (props) => {
-    return (
-        <div>
-            <p>hyvä {props.hyva}<br/>
-            neutraali {props.neutraali}<br/> 
-            huono {props.huono}<br/>
-            keskiarvo {props.keskiarvo}<br/>
-            lkm {props.lkm}<br/>
-            positiivisia {props.prosentti} %<br/></p>
-        </div>
-    )
-}
 
 const Button = ({handleClick, text}) => (
     <button onClick={handleClick}>
         {text}
     </button>
 )
+
+const Statistic = ({statistiikka, nimi}) => {
+    return (
+        
+            <p>{nimi} {statistiikka}</p>
+       
+    )
+}
+
+const Statistics = (props) => {
+    return (
+        <div>
+            <h3>Statistiikka</h3>
+            <Statistic
+                statistiikka={props.hyva}
+                nimi="hyvä"
+            />
+            <Statistic
+                statistiikka={props.neutraali}
+                nimi="neutraali"
+            />
+            <Statistic
+                statistiikka={props.huono}
+                nimi="huono"
+            />
+            <Statistic
+                statistiikka={props.keskiarvo}
+                nimi="keskiarvo"
+            />
+            <Statistic
+                statistiikka={props.prosentti}
+                nimi="prosentti"
+            />
+        </div>
+    )
+
+}
 
 ReactDOM.render(
     <App/>,
