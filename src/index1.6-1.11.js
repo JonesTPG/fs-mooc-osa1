@@ -62,6 +62,7 @@ class App extends React.Component {
         
     }
 
+    //tehtävä 1.10 
     paivitaTila(tyyppi) {
         let keskiarvo;
         let prosentti;
@@ -145,9 +146,10 @@ const Button = ({handleClick, text}) => (
 
 const Statistic = ({statistiikka, nimi}) => {
     return (
-        
-            <p>{nimi} {statistiikka}</p>
-       
+            <tr>
+           <td>{nimi}</td> 
+           <td>{statistiikka}</td>
+            </tr>
     )
 }
 
@@ -162,7 +164,8 @@ const Statistics = (props) => {
     else {
         return (
             <div>
-            
+                <table>
+                <tbody>
                 <Statistic
                     statistiikka={props.hyva}
                     nimi="hyvä"
@@ -183,6 +186,8 @@ const Statistics = (props) => {
                     statistiikka={props.prosentti.toFixed(1)}
                     nimi="prosentti"
                 />
+                </tbody>
+                </table>
             </div>
         )
     }
