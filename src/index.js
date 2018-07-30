@@ -13,7 +13,9 @@ class App extends React.Component {
           3: 0,
           4: 0,
           5: 0
-      }
+      },
+      suosituin: 0,
+      suosituinlkm: 0
     }
   }
 
@@ -30,7 +32,20 @@ class App extends React.Component {
   aanesta(indeksi) {
     let kopio = {...this.state.pisteet}
     kopio[indeksi] += 1
-    return () => this.setState({pisteet: kopio})
+    let suosituin = this.state.suosituin
+    let suosituinlkm = this.state.suosituinlkm
+    for (let i = 0; i <= 5; i++) {
+        if (kopio[i] > suosituinlkm) {
+            //uusinta ääntä ei ole vielä rekisteröity,
+            //joten lisätään se alla.
+            suosituinlkm = this.state.pisteet[i]+1
+
+            suosituin = i
+        }
+    }
+    return () => this.setState({pisteet: kopio,
+                                suosituin: suosituin,
+                                suosituinlkm: suosituinlkm})
   }
 
   render() {
@@ -38,12 +53,18 @@ class App extends React.Component {
       <div align="center">
         {this.props.anecdotes[this.state.selected]} <br/>
         has {this.state.pisteet[this.state.selected]} votes <br/>
+        
         <button onClick={this.satunnainen()}>
             Next anectode
         </button>
+        
         <button onClick={this.aanesta(this.state.selected)}>
             Vote
-        </button>
+        </button> <br/>
+
+        <h3> Anectode with most votes: </h3> <br/>
+        {this.props.anecdotes[this.state.suosituin]} <br/>
+        has {this.state.suosituinlkm} votes 
       </div>
     )
   }
